@@ -1,17 +1,18 @@
 from flask import Flask, render_template, request, json
 from Converter import Converter
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
-@app.route("/")
+
+@application.route("/")
 def main():
 
     model = {"title":"Welcome to Converter!"}
     return render_template('index.html', model=model)
 
 
-@app.route("/temp-converter")
+@application.route("/temp-converter")
 def tempconverter():
 
     model = {"title":"Temp Converter",
@@ -19,7 +20,7 @@ def tempconverter():
     return render_template('temp_converter.html', model=model)
 
 
-@app.route("/convert-temp", methods=['POST'])
+@application.route("/convert-temp", methods=['POST'])
 def convert_temp():
 
     temptoconvert = float(request.form["temp"])
@@ -36,4 +37,4 @@ def convert_temp():
 
 
 if __name__ == "__main__":
-    app.run()
+    application.run(host='0.0.0.0', port=8080, debug=True)

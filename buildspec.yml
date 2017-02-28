@@ -5,6 +5,7 @@ phases:
     commands:
       - echo Converter build started on `date`
       - echo Compiling the Python code...
+      - echo Running Tests...
       - python converterTests.py
   post_build:
     commands:
