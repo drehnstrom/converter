@@ -11,9 +11,10 @@ phases:
       - echo Hey, Build completed on `date` woo hoo!
 artifacts:
   files:
-    - app.py
+    - application.py
     - Converter.py
     - converterTests.py
+    - requirements.txt
     - templates/index.html
     - templates/layout.html
     - templates/temp_converter.html
