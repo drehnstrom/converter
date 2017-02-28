@@ -14,6 +14,6 @@ artifacts:
     - app.py
     - Converter.py
     - converterTests.py
-    - ./templates/index.html
-    - ./templates/layout.html
-    - ./templates/temp_converter.html
+    - templates/index.html
+    - templates/layout.html
+    - templates/temp_converter.html
