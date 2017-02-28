@@ -1,0 +1,16 @@
+version: 0.1
+
+phases:
+  build:
+    commands:
+      - echo Converter build started on `date`
+      - echo Compiling the Python code...
+      - python converterTests.py
+  post_build:
+    commands:
+      - echo Hey, Build completed on `date` woo hoo!
+artifacts:
+  files:
+    - app.py
+    - Converter.py
+    - converterTests.py
