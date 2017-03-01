@@ -64,6 +64,16 @@ def to_celsius(temp):
     return json.dumps(result)
 
 
+@application.route("/api/pets")
+def get_pets():
+
+    pets = [{"name":"Noir", "breed":"Schnoodle"},
+            {"name":"Bree", "breed":"MaltePoo"},
+            {"name":"Sparky", "breed":"Mutt"}]
+
+    return json.dumps(pets)
+
+
 @application.errorhandler(InvalidUsage)
 def handle_invalid_usage(error):
     response = jsonify(error.to_dict())
