@@ -4,7 +4,7 @@ phases:
   build:
     commands:
       - echo Converter build started on `date`
-      - echo Compiling the Python code...
+      - echo Compiling the code...
       - echo Running Tests...
       - python converterTests.py
   post_build:
@@ -15,7 +15,13 @@ artifacts:
     - application.py
     - Converter.py
     - converterTests.py
+    - error.py
     - requirements.txt
     - templates/index.html
     - templates/layout.html
     - templates/temp_converter.html
+
+
+
+
+

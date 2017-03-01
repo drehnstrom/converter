@@ -1,20 +1,18 @@
-from flask import Flask, render_template, request, json
+from flask import Flask, render_template, request, json, jsonify
 from Converter import Converter
+from error import InvalidUsage
 
 application = Flask(__name__)
 
 
-
 @application.route("/")
 def main():
-
     model = {"title":"Welcome to Converter!"}
     return render_template('index.html', model=model)
 
 
 @application.route("/temp-converter")
 def tempconverter():
-
     model = {"title":"Temp Converter",
              "converter":Converter()}
     return render_template('temp_converter.html', model=model)
@@ -23,10 +21,13 @@ def tempconverter():
 @application.route("/convert-temp", methods=['POST'])
 def convert_temp():
 
-    temptoconvert = float(request.form["temp"])
+    try:
+        temptoconvert = float(request.form["temp"])
+    except:
+        temptoconvert = 0.0
+
+
     toC = request.form.get('toCelsius', False)
-
-
     conv = Converter()
     conv.setTemp(temptoconvert)
 
@@ -38,8 +39,36 @@ def convert_temp():
 
     model = {"title":"Temp Converter",
              "converter":conv}
-
     return render_template('temp_converter.html', model=model)
+
+
+@application.route("/api/conversions/temperature/<temp>")
+def to_celsius(temp):
+
+    try:
+        temptoconvert = float(temp)
+    except:
+        raise InvalidUsage('Invalid User Input. Temperature parameter must be numeric.', status_code=400)
+
+    conv = Converter()
+    conv.setTemp(temptoconvert)
+    conv.toCelsius()
+    celsius = conv.converted_temp
+    conv.toFahrenheit()
+    fahrenheit = conv.converted_temp
+
+    result = {"input":temptoconvert,
+             "celsius":celsius,
+             "fahrenheit":fahrenheit}
+
+    return json.dumps(result)
+
+
+@application.errorhandler(InvalidUsage)
+def handle_invalid_usage(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
 
 
 
