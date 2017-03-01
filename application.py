@@ -24,10 +24,17 @@ def tempconverter():
 def convert_temp():
 
     temptoconvert = float(request.form["temp"])
+    toC = request.form.get('toCelsius', False)
+
 
     conv = Converter()
     conv.setTemp(temptoconvert)
-    conv.toCelsius()
+
+    if toC == False:
+        conv.toFahrenheit()
+    else:
+        conv.toCelsius()
+
 
     model = {"title":"Temp Converter",
              "converter":conv}
