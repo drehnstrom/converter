@@ -32,6 +32,8 @@ class TestConverter(unittest.TestCase):
         self.assertEqual(self.testObj.temp_to_convert, 100.0)
         self.assertEqual(self.testObj.converted_temp, 212.0)
 
+    def test_test(self):
+        self.assertTrue(False)
 
 
 if __name__ == '__main__':
