@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: converter-pod
+  labels:
+    purpose: converter-frontend
+spec:
+  containers:
+  - name: converter-dar
+    image: drehnstrom/converter-dar:latest
+
+---
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: converter-frontend
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: converter
+        tier: frontend
+    spec:
+      containers:
+      - name: converter-dar
+        image: drehnstrom/converter-dar:latest
+        imagePullPolicy: Always
+        env:
+        - name: PROCESSES
+          value: converter
+        # The Web app process listens on port 8080 for web traffic by default.
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: converter-service
+  labels:
+    app: converter
+    tier: frontend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: converter
+    tier: frontend

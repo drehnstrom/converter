@@ -1,0 +1,31 @@
+#####  DOCKER COMMANDS #########
+docker build -t drehnstrom/converter-dar:latest .
+
+docker run -d -p 8080:8080 drehnstrom/converter-dar
+
+#To find out status of containers
+docker ps
+
+#To stop container
+docker stop <container-id-here>
+
+# To Push, first log into docker
+docker login
+
+#To Push to Docker Hub
+docker push drehnstrom/converter-dar
+
+
+##### KUBERNETES COMMANDS
+
+# Need to configure gcloud to default to the target project, default zone and target cluster
+
+#  Get authorization to the Cluster
+gcloud container clusters get-credentials <cluster-name-here>
+
+
+# Deploys the container bsed on YAML configuration
+kubectl create -f gke-config.yaml
+
+# To delete the service created by previous command
+kubectl delete -f gke-config.yaml

@@ -7,7 +7,7 @@ application = Flask(__name__)
 
 @application.route("/")
 def main():
-    model = {"title":"Welcome to CONVERTER!!!!!!!"}
+    model = {"title":"Welcome to CONVERTER on Docker!"}
     return render_template('index.html', model=model)
 
 
@@ -81,6 +81,6 @@ def handle_invalid_usage(error):
     return response
 
 
-
+# Need to add  port=8080,  in run function below to run on ELB
 if __name__ == "__main__":
     application.run(host='0.0.0.0', port=8080, debug=True)
