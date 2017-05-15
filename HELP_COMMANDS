@@ -1,3 +1,12 @@
+#####  Google App Engine ########
+gcloud app deploy --project drehnstrom-1171 -v one
+
+
+####  AWS ELB ######
+# Just push to git origin and it should deploy (hopefully)
+# Say Deny on the security warning.
+git push origin master
+
 #####  DOCKER COMMANDS #########
 docker build -t drehnstrom/converter-dar:latest .
 

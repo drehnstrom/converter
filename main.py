@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    model = {"title":"Welcome to CONVERTER on Docker!"}
+    model = {"title":"Welcome to CONVERTER!"}
     return render_template('index.html', model=model)
 
 

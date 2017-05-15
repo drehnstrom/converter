@@ -1,6 +1,7 @@
 runtime: python27
 api_version: 1
 threadsafe: yes
+service: converter
 
 handlers:
 - url: /favicon\.ico
@@ -8,5 +9,5 @@ handlers:
   upload: favicon\.ico
 
 - url: .*
-  script: main.app
+  script: application.application
 
