@@ -2,10 +2,15 @@
 gcloud app deploy --project drehnstrom-1171 -v one
 
 
+
 ####  AWS ELB ######
 # Just push to git origin and it should deploy (hopefully)
 # Say Deny on the security warning.
+# AWS uses CodeCommit, CodeDeploy and CodePipeline to deploy the application
+
 git push origin master
+
+
 
 #####  DOCKER COMMANDS #########
 docker build -t drehnstrom/converter-dar:latest .
@@ -23,6 +28,8 @@ docker login
 
 #To Push to Docker Hub
 docker push drehnstrom/converter-dar
+
+
 
 
 ##### KUBERNETES COMMANDS
