@@ -7,7 +7,7 @@ application = Flask(__name__)
 
 @application.route("/")
 def main():
-    model = {"title":"Welcome to CONVERTER!!!!!"}
+    model = {"title":"Welcome to the GREAT CONVERTER!!!!!"}
     return render_template('index.html', model=model)
 
 
