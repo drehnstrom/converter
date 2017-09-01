@@ -30,18 +30,34 @@ docker login
 docker push drehnstrom/converter-dar
 
 
-
-
 ##### KUBERNETES COMMANDS
 
 # Need to configure gcloud to default to the target project, default zone and target cluster
 
+# Create a cluster in drehnstrom-1171 project - uses all the defaults
+gcloud container clusters create converter-cluster
+
+# Use List command to see the cluster
+gcloud container clusters list
+
+# Here you can see the VMs that were created in Compute Engine
+gcloud compute instances list
+
 #  Get authorization to the Cluster
-gcloud container clusters get-credentials <cluster-name-here>
+gcloud container clusters get-credentials converter-cluster
 
 
 # Deploys the container bsed on YAML configuration
 kubectl create -f gke-config.yaml
 
+# To see the pods - Must be ready takes maybe a minute
+kubectl get pods
+
+# Need the IP Address - Type
+kubectl get service
+
 # To delete the service created by previous command
 kubectl delete -f gke-config.yaml
+
+# Delete the Cluster
+gcloud container clusters delete converter-cluster
