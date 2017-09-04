@@ -1,3 +1,6 @@
+##### Run the App on the Local Machine ######
+python application.py
+
 #####  Google App Engine ########
 gcloud app deploy --project drehnstrom-1171 -v one
 

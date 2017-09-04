@@ -7,7 +7,7 @@ application = Flask(__name__)
 
 @application.route("/")
 def main():
-    model = {"title":"Welcome to the GREAT CONVERTER!!!!! version four"}
+    model = {"title":"Welcome to the GREAT CONVERTER!"}
     return render_template('index.html', model=model)
 
 
@@ -37,7 +37,7 @@ def convert_temp():
         conv.toCelsius()
 
 
-    model = {"title":"Temp Converter!!!!!!! Version 4",
+    model = {"title":"Temp Converter!",
              "converter":conv}
     return render_template('temp_converter.html', model=model)
 
